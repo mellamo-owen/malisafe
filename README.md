@@ -3,11 +3,6 @@
 > **Linda Duka Lako. Lipa Kidogo. Dai Haraka.**  
 > MaliSafe ni digital insurance platform ya kulinda bidhaa za duka dhidi ya wizi na uharibifu. Ushirikiano na Direct Assurance & Jubilee Insurance.
 
-[[Live Demo](https://img.shields.io/badge/Live%20Demo-malisafe.vercel.app-00C853?style=for-the-badge)](https://malisafe.vercel.app)
-[[Insurance Partner](https://img.shields.io/badge/Partner-Direct%20Assurance-E31E24?style=for-the-badge)](#)
-[[Build](https://img.shields.io/badge/Build-Passing-00C853?style=for-the-badge)](#)
-[[License](https://img.shields.io/badge/License-MIT-1A1A2E?style=for-the-badge)](LICENSE)
-
 ---
 
 ### **🎯 Shida Tunatatua**
