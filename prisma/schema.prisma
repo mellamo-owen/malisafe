@@ -1,0 +1,88 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Shop {
+  id        String   @id @default(cuid())
+  name      String   @default("My Duka")
+  phone     String   @unique
+  createdAt DateTime @default(now())
+  items     Item[]
+  revenues  Revenue[]
+}
+
+model Item {
+  id            String   @id @default(cuid())
+  malisafeId    String   @unique
+  shopId        String
+  shop          Shop     @relation(fields: [shopId], references: [id])
+  customerPhone String
+  customerName  String
+  itemName      String
+  serial        String
+  price         Int
+  photoBase64   String   @db.Text
+  createdAt     DateTime @default(now())
+  claims        Claim[]
+  
+  insuranceCompany String?
+  policyNumber     String?
+  insuranceStatus  String?  @default("Active")
+  insuranceExpiry  DateTime?
+}
+
+model Claim {
+  id        String      @id @default(cuid())
+  itemId    String
+  item      Item        @relation(fields: [itemId], references: [id])
+  status    ClaimStatus @default(PENDING)
+  mpesaCode String?
+  amount    Int         @default(100)
+  pdfUrl    String?
+  createdAt DateTime    @default(now())
+  
+  claimNumber    String?
+  insuranceNotes String?
+  reviewedAt     DateTime?
+  reviewedBy     String?
+  settlementAmount Int?
+  settlementDate  DateTime?
+}
+
+model Revenue {
+  id        String      @id @default(cuid())
+  shopId    String
+  shop      Shop        @relation(fields: [shopId], references: [id])
+  amount    Int
+  type      RevenueType
+  mpesaCode String?
+  createdAt DateTime    @default(now())
+}
+
+model Otp {
+  id        String   @id @default(cuid())
+  phone     String
+  code      String
+  expiresAt DateTime
+}
+
+enum ClaimStatus {
+  PENDING
+  UNDER_REVIEW
+  APPROVED
+  REJECTED
+  PAID
+  COMPLETED
+  FAILED
+}
+
+enum RevenueType {
+  SAAS
+  COMMISSION
+  CLAIM
+}
